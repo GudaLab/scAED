@@ -56,26 +56,42 @@ Figure 2.2: Cell Type Table.
 c)	 Enhancer Table
 
 •	User can select the cell type from ‘Select Cell Type’ drop down tab. It displays detailed information about enhancers filtered by cell type.
+
 •	Key columns in the table include:
+
 o	Enhancer ID: The first column contains the enhancer IDs, such as En0100050273.
+
 o	Enhancer name: Displays the name of the enhancer, e.g. chr1_10867180_10867323.
+
 o	Chromosome: Indicates the chromosome where the enhancer is located, e.g., chr1.
+
 o	Start: Shows the starting genomic coordinate of the enhancer.
+
 o	End: Shows the ending genomic coordinate of the enhancer.
+
 o	%Cells: Represents the percentage of cells where the enhancer is present.
+
 o	Directionality: Indicates whether the enhancer can act bidirectionally. Enhancers with this property are labeled as Bidirectional.
+
 o	Gene symbols: Lists the genes affected by the enhancer and specifies the DNA strand they are on, e.g., RRX1(+); GORAB(+). A plus sign (+) indicates the sense strand, while a minus sign (-) indicates the anti-sense strand.
+
 o	Cell line: Provides information about the cell line used in the experiments.
+
 o	Distance to nearest gene: Displays the distance of the enhancer from the nearest affected gene.
+
 o	Transcription factor: Lists the transcription factors bound with the respective enhancer.
+
 •	The table shows 20 entries by default, with the option to expand the view to 100 entries. Users can also download this table in CSV format.
+
 
  ![2 3](https://github.com/user-attachments/assets/632a8874-f1ef-4bdd-881a-a0bf83070e69)
 
 Figure 2.3: Enhancer Table.
 
 d)	 Overlaps Enhancers
+
 •	This section allows users to explore enhancers that overlap with specific genomic regions.
+
 •	By selecting a cell type and genomic region, users can retrieve detailed information about overlapping enhancers, including their IDs and associated data.
 
  ![2 4](https://github.com/user-attachments/assets/4365503a-769a-4942-89cb-6d77c663b614)
@@ -83,9 +99,13 @@ d)	 Overlaps Enhancers
 Figure 2.4: Overlaps Enhancers Section.
 
 3.	Search Engine
+   
 The Search Engine tab provides a global search function for retrieving enhancer data. It includes four search options in a dropdown menu.
+
 a)	 Chromosomal Position Search
+
 •	Users can specify a genomic region by entering a start and end position for the chromosome of interest.
+
 •	This search retrieves enhancer information associated with the specified chromosomal region, providing details such as enhancer IDs, coordinates, and associated genes.
 
  ![3 1](https://github.com/user-attachments/assets/f709e5ae-6943-4269-bb73-4f30370c83f4)
@@ -93,7 +113,9 @@ a)	 Chromosomal Position Search
 Figure 3.1: Chromosomal Position Query.
 
 b)	Gene Search
+
 •	This feature allows users to search for enhancers linked to a specific gene by entering the gene's name or identifier.
+
 •	This query is useful for investigating how enhancers regulate the expression of specific genes.
 
  ![3 2](https://github.com/user-attachments/assets/3a3a1701-80f4-4102-86b8-0aaa835c2148)
@@ -101,7 +123,9 @@ b)	Gene Search
 Figure 3.2: Search by Gene Query.
 
 c)	Transcription Factor Search
+
 •	Users can input transcription factor identifiers to find enhancers regulated by or interacting with the selected transcription factors.
+
 •	The results help in understanding the role of transcription factors in gene regulation.
 
  ![3 3](https://github.com/user-attachments/assets/22024a53-f111-4bc8-a117-6a5c6cb3196f)
@@ -109,7 +133,9 @@ c)	Transcription Factor Search
 Figure 3.3: Search by Transcription Factor.
 
 d)	 Enhancer ID Search
+
 •	This feature provides a targeted way to retrieve information about specific enhancers by entering their unique IDs.
+
 •	This feature is particularly helpful for in-depth analysis of individual enhancers.
 
  ![3 4](https://github.com/user-attachments/assets/57cb259d-146a-4c1e-8aef-b254eb69ec6c)
