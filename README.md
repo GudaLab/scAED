@@ -26,6 +26,8 @@ We have developed the first active enhancer database at single‑cell resolution
 
 scAED catalogs active enhancers at single‑cell resolution across normal and disease conditions, linking enhancers, transcription factors (TFs), promoters, and target genes in an interactive R Shiny application.
 
+![Figure_1](https://github.com/user-attachments/assets/17cea8c1-fa16-4473-9a9f-9e794c46593a)
+
 ## Interface
 
 The database is implemented as an R Shiny web application, offering:
@@ -129,6 +131,8 @@ Enter unique enhancer IDs to retrieve detailed information.
 
 ![Enhancer ID Search](https://github.com/user-attachments/assets/57cb259d-146a-4c1e-8aef-b254eb69ec6c)
 *Figure 3.4: Enhancer ID Search.*
+
+### The repository includes all scripts in a clear sequential workflow, as listed below in the table:
 
 | Step (script) | Input | Output | Purpose |
 | --- | --- | --- | --- |
