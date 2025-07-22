@@ -130,6 +130,36 @@ Enter unique enhancer IDs to retrieve detailed information.
 ![Enhancer ID Search](https://github.com/user-attachments/assets/57cb259d-146a-4c1e-8aef-b254eb69ec6c)
 *Figure 3.4: Enhancer ID Search.*
 
+| Step (script) | Input | Output | Purpose |
+| --- | --- | --- | --- |
+| Step_1.1_ENotract_BAM_AT_SC.py | Pooled ATAC-seq BAM file (atac_possorted_bam.bam)Barcode text files per cell type (e.g., cell_type_name.txt) | Per-barcode BAM files organized by cell type | Filters reads from pooled BAM based on barcodes to create individual per-cell BAM files. |
+| Step_1.2_Sorting_IndeNo.sh | Each per-barcode BAM file | Sorted BAM files (coordinate-sorted and name-sorted) with indexes | Uses samtools to sort and index BAM files for downstream peak calling and footprinting. |
+| Step_2a_Genrich.shStep_2b_Genrich.sh | Name-sorted BAM files | NarrowPeak files per cell barcode | Runs Genrich to call accessible chromatin peaks from each BAM file in parallel batches. |
+| Step_3_Filter_narrowPeak_files.py | Generated narrowPeak files | Filtered peak files | Cleans peak files for quality or region-based filtering before footprinting. |
+| Step_4_ATACorrect.sh | BAM files, peak files, genome reference, blacklist regions | Corrected bigWig signal files per barcode | Uses TOBIAS ATACorrect to correct Tn5 insertion bias in ATAC-seq signals. |
+| Step_5_ScoreBigwig.sh | Corrected bigWig files, narrowPeak files | Footprint score bigWig files | Runs TOBIAS FootprintScores to identify potential TF footprints in accessible regions. |
+| Step_6_BINDetect.sh | Footprint score files, motif files (e.g. JASPAR), genome FASTA, peak files | BINDetect results per barcode (motif binding predictions) | Uses TOBIAS BINDetect to infer motif binding activity per cell type/barcode. |
+| Step_7.1_Renaming_bindetect_results_with_cell_name.py | BINDetect result files | Renamed results with standardized or cell-specific names | Renames outputs to include cell names for clarity in aggregation and interpretation. |
+| Step_7.2_Find_Copy_all_bed_files_to_bound_output.sh | All BINDetect output directories containing *_bound.bed files | Copies of bound.bed files in a unified output folder | Gathers all final predicted bound motif files for summary or visualization. |
+| Step_7.3_Merge_ALL_bound.bed_files_into_one_named_after_the_directory.sh | Multiple *_bound.bed files in each BINDetect output directory | Single merged BED file per directory | Concatenates per-cell bound.bed files into one merged BED per directory. |
+| Step_7.4_Copy_All_Merged-Bed_Files.sh | Merged BED files from all directories | Copies of all merged BED files in a centralized destination directory | Collects all merged BEDs into a single folder for integration analysis. |
+| Step_7.5_Enhancers_Intersect_with_ED.py | Merged BED files; Enhancer annotation BED file(s) | Intersection result files (overlaps between predicted bound regions and enhancers) | Uses bedtools intersect (contextual assumption) to identify overlaps between binding sites and known enhancers. |
+| Step_7.6_Enhancer_Overlaps_Summary.py | Intersection output files from Step 7.5 | Summarized counts or tables reporting enhancer overlaps per cell/type | Aggregates intersection results into summary tables for visualization or statistical interpretation. |
+
+Definition
+•	atac_possorted_bam.bam: This is the pooled ATAC-seq BAM file output by the 10x Cell Ranger pipeline, containing all reads from all cells, position-sorted across the genome.
+•	Barcode: A unique nucleotide sequence assigned to each cell during single-cell sequencing, enabling identification and separation of reads per cell.
+•	Coordinate-sorted BAM file: BAM file sorted by genomic coordinates (chromosome and position). Necessary for downstream tools like peak callers or visualization software that require position-ordered input.
+•	Name-sorted BAM file: BAM file sorted by read names instead of genomic coordinates. Required by some tools (e.g. Genrich) that operate based on read pairs or read groupings.
+•	NarrowPeak files: Standard output format from peak callers (e.g. Genrich) representing regions of accessible chromatin (peaks) with associated scores and statistics.
+•	Filtered peak files: NarrowPeak files that have undergone additional filtering based on quality metrics or genomic regions to remove low-confidence or irrelevant peaks.
+•	Corrected bigWig signal files: Continuous signal tracks (bigWig format) produced after correcting ATAC-seq signals for Tn5 transposase insertion bias using tools like TOBIAS ATACorrect.
+•	Footprint score bigWig files: bigWig files containing footprinting scores, indicating potential transcription factor (TF) binding footprints within accessible chromatin regions.
+•	BINDetect results: Output from TOBIAS BINDetect containing predicted TF binding sites per motif, including bound and unbound regions along with binding scores.
+•	bound.bed files: BED files listing genomic coordinates of predicted bound TF motifs, indicating where a motif is likely bound by a TF in the analyzed sample.
+•	Single merged BED file: A concatenated BED file combining multiple bound.bed files within a directory to represent all predicted TF binding events for that cell type or condition.
+•	Summarized counts or tables reporting enhancer overlaps: Tables that report the number of TF binding sites overlapping known enhancer regions, summarizing these intersections per cell type for further interpretation or visualization.
+
 ## License
 
 <!-- Add your license information here, e.g., MIT License -->
