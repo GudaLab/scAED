@@ -132,7 +132,7 @@ Enter unique enhancer IDs to retrieve detailed information.
 
 | Step (script) | Input | Output | Purpose |
 | --- | --- | --- | --- |
-| Step_1.1_ENotract_BAM_AT_SC.py | Pooled ATAC-seq BAM file (atac_possorted_bam.bam)Barcode text files per cell type (e.g., cell_type_name.txt) | Per-barcode BAM files organized by cell type | Filters reads from pooled BAM based on barcodes to create individual per-cell BAM files. |
+| Step_1.1_Extract_BAM_AT_SC.py | Pooled ATAC-seq BAM file (atac_possorted_bam.bam)Barcode text files per cell type (e.g., cell_type_name.txt) | Per-barcode BAM files organized by cell type | Filters reads from pooled BAM based on barcodes to create individual per-cell BAM files. |
 | Step_1.2_Sorting_IndeNo.sh | Each per-barcode BAM file | Sorted BAM files (coordinate-sorted and name-sorted) with indexes | Uses samtools to sort and index BAM files for downstream peak calling and footprinting. |
 | Step_2a_Genrich.shStep_2b_Genrich.sh | Name-sorted BAM files | NarrowPeak files per cell barcode | Runs Genrich to call accessible chromatin peaks from each BAM file in parallel batches. |
 | Step_3_Filter_narrowPeak_files.py | Generated narrowPeak files | Filtered peak files | Cleans peak files for quality or region-based filtering before footprinting. |
