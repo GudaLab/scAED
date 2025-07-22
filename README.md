@@ -162,6 +162,5 @@ Enter unique enhancer IDs to retrieve detailed information.
 *   **Summarized counts or tables reporting enhancer overlaps**: Tables that report the number of TF binding sites overlapping known enhancer regions, summarizing these intersections per cell type for further interpretation or visualization.
 
 ## License
-
-<!-- Add your license information here, e.g., MIT License -->
+### No licence
 
